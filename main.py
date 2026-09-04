@@ -1,22 +1,21 @@
 # Built-In
 import asyncio
 
+# External Imports
+from pygame.locals import *
+
 # Internal Imports
 from core import Application
 from scenes import *
 
-# Game Class
-class Game(Application):
-    def __init__(self, screen_size: tuple[int, int], flags: int = 0, fps: int = 0):
-        super().__init__(screen_size, flags, fps)
-
 def start_game():
     # Init Game & Scenes
-    game = Game((1920, 1080))
+    game = Application((320, 180), flags=FULLSCREEN | SCALED)
     game.add_scene(Title, "title")
+    game.add_scene(Stream, "stream")
 
     # Set Current Scene
-    game.set_scene("title")
+    game.set_scene("stream") # Change this to "title" in final build
 
     # Start Game
     asyncio.run(game.start())
